@@ -1,0 +1,40 @@
+.vcard {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-bottom: 3px gray solid;
+	
+}
+
+.fn {
+	font-weight: bold;
+	font-size: larger;
+}
+
+.tel {
+	padding-left: 30px;
+}
+
+.email {
+	padding-left: 30px;
+	font-family: Courier, "Courier New", monospace
+}
+
+.url {
+	padding-left: 30px;
+
+}
+
+.adr {
+	padding-left: 30px;
+
+}
+
+.work {
+	color: darkgreen;
+}
+
+.home {
+	color: darkblue;
+}

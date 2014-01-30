@@ -103,7 +103,12 @@ end
 # Takes a list of Vcards and makes HTML for them.
 def write_html cards
 	html = '<html>' + "\n"
+	html += '<head>' + "\n"
+	html += '<link rel="stylesheet" href="./contacts.css" type="text/css" />' + "\n"
+	html += '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' + "\n"
+	html += '</head>' + "\n"
 	html += '<body>' + "\n"
+	html += '<h1>Contacts</h1>' + "\n"
 
 	cards.each do |card|
 		html += vcard_to_html card
