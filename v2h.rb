@@ -7,7 +7,12 @@ $filename = "contacts.vcf"
 
 # Converts a single Vcard to HTML.
 def vcard_to_html card
-	puts card.name.fullname
+	html = "<div>"
+
+	html += card.name.fullname
+
+	html += "</div>\n"
+	return html
 end
 
 # Converts a VCF file to HTML.
@@ -16,9 +21,18 @@ def vcf_to_html
 	s = File.read($filename)
 	cards = Vcard::Vcard.decode(s)
 
+	html = "<html>\n"
+	html += "<body>\n"
+
 	cards.each do |card|
-		vcard_to_html card
+		html += vcard_to_html card
 	end
+
+	html += "</body>\n"
+	html += "</html>\n"
+
+	#TODO Write this to a file.
+	puts html
 end
 
 vcf_to_html
