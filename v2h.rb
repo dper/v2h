@@ -1,4 +1,16 @@
 #!/usr/bin/ruby
+# coding: utf-8
+#
+# == NAME
+# v2h.rb
+#
+# == USAGE
+# ./v2h.rb
+#
+# == DESCRIPTION
+# Takes a VCF file containing one or more Vcards and makes an HTML file of it.
+# The HTML is hCard 1.0 formatted.
+
 
 require "vcard"
 include Vcard
@@ -85,8 +97,21 @@ def write_address addresses
 	addresses.each do |address|
 		html += '<div class="adr">'
 
-		#TODO Handle addresses better.
-		html += address.street
+		if address.street.start_with? '日本'
+			# The address is Japanese and entirely in the street field.
+			html += address.street
+
+		elsif address.country == '日本'
+			# The address is Japanese and uses multiple fields.
+			html += address.country + '　'
+			html += address.postalcode + ' '
+			html += address.region
+			html += address.locality
+			html += address.street
+		else
+			# Assume the address is standard U.S. format.
+			html += address.street
+		end
 
 		html += '</div>' + "\n"
 	end
