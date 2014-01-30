@@ -7,28 +7,37 @@
 	
 }
 
+.n {
+	padding-bottom: 10px;
+}
+
 .fn {
 	font-weight: bold;
 	font-size: larger;
 }
 
 .tel {
-	padding-left: 30px;
+	padding-left: 50px;
 }
 
 .email {
-	padding-left: 30px;
+	padding-left: 50px;
 	font-family: Courier, "Courier New", monospace
 }
 
 .url {
-	padding-left: 30px;
+	padding-left: 50px;
+}
 
+.addresses {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 50px;
 }
 
 .adr {
-	padding-left: 30px;
-
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .work {

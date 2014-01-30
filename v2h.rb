@@ -9,7 +9,9 @@ $output = 'contacts.html'
 
 # Returns a string of HTML with the contact's name.
 def write_name name
-	html = '<span class="fn">' + name.fullname + '</span>' + "\n"
+	html = '<div class="n">'
+	html += '<span class="fn">' + name.fullname + '</span>' + "\n"
+	html += '</div>'
 	return html
 end
 
@@ -70,7 +72,7 @@ def write_address addresses
 		return ''
 	end
 
-	html = '<div>' + "\n"
+	html = '<div class="addresses">' + "\n"
 
 	addresses.each do |address|
 		html += '<div class="adr">'
