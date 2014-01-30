@@ -71,6 +71,7 @@
 .category {
 	text-transform: uppercase;
 	color: #555555;
+	text-decoration: underline;
 }
 
 .work {
