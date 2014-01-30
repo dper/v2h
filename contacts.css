@@ -1,6 +1,6 @@
 .vcard {
 	padding-top: 15px;
-	padding-bottom: 15px;
+	padding-bottom: 5px;
 	padding-left: 15px;
 	padding-right: 15px;
 	border-bottom: 3px gray solid;
@@ -22,7 +22,7 @@
 
 .email {
 	padding-left: 50px;
-	font-family: Courier, "Courier New", monospace
+	font-family: Courier, "Courier New", monospace;
 }
 
 .url {
@@ -62,6 +62,7 @@
 
 .geo {
 	color: brown;
+	font-family: Courier, "Courier New", monospace;
 }
 
 .categories {
@@ -73,6 +74,7 @@
 	text-decoration: underline;
 	font-size: smaller;
 	color: #555555;
+	padding-left: 10px;
 }
 
 .work {

@@ -21,9 +21,12 @@ $output = 'contacts.html'
 
 # Returns a string of HTML with the contact's name.
 def write_name name
-	html = '<div class="n">'
+	html = '<div class="n">' + "\n"
 	html += '<span class="fn">' + name.fullname + '</span>' + "\n"
-	html += '</div>'
+
+	#TODO Add phonetic names.
+
+	html += '</div>' + "\n"
 	return html
 end
 
@@ -79,7 +82,7 @@ def write_url urls
 
 	urls.each do |url|
 		link = url.uri
-		html += '<span><a href="' + link + '">' + link + '</a></span>'
+		html += '<span><a href="' + link + '">' + link + '</a></span>' + "\n"
 	end
 
 	html += '</div>' + "\n"
@@ -120,7 +123,7 @@ def write_address addresses
 		html += '<div class="adr">'
 
 		if is_gps_address? address.street
-			html += '<span class="geo">' + address.street + '</geo>'
+			html += '<span class="geo">' + address.street + '</span>'
 		elsif address.street.start_with? '日本'
 			# The address is Japanese and entirely in the street field.
 			html += address.street
@@ -157,10 +160,10 @@ def write_category categories
 		return ''
 	end
 
-	html = '<div class="categories">' + "\n"
+	html = '<div class="categories">'
 
 	categories.each do |category|
-		html += '<span class="category">' + category + '</span>' + "\n"
+		html += '<span class="category">' + category + '</span>'
 	end
 
 	html += '</div>' + "\n"
