@@ -17,8 +17,25 @@ def write_telephone telephones
 	
 	html = '<div class="tel">' + "\n"
 
-	card.telephones.each do |tel|
-		html += '<div class="tel">' + tel + '</div>' + "\n"
+	telephones.each do |tel|
+		location = tel.location[0]
+		html += '<span class="' + location + '">' + tel + '</span>' + "\n"
+	end
+
+	html += '</div>' + "\n"
+	return html
+end
+
+def write_url urls
+	if urls.size == 0
+		return ''
+	end
+
+	html = '<div class="url">' + "\n"
+
+	urls.each do |url|
+		link = url.uri
+		html += '<span><a href="' + link + '">' + link + '</a></span>'
 	end
 
 	html += '</div>' + "\n"
@@ -30,13 +47,9 @@ def vcard_to_html card
 	html = '<div class="vcard">' + "\n"
 	html += write_name card.name
 	html += write_telephone card.telephones
+	html += write_url card.urls
 
 
-	if card.emails.size > 0
-		card.emails.each do |email|
-			html += '<a class="email" href="' + email + '">' + email + '</a>' + "\n"
-		end
-	end
 
 	html += '</div>' + "\n"
 	return html
