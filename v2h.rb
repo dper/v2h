@@ -23,9 +23,6 @@ $output = 'contacts.html'
 def write_name name
 	html = '<div class="n">' + "\n"
 	html += '<span class="fn">' + name.fullname + '</span>' + "\n"
-
-	#TODO Add phonetic names.
-
 	html += '</div>' + "\n"
 	return html
 end
@@ -124,6 +121,41 @@ def is_usa_address? address
 	return true
 end
 
+# Returns a string of HTML for a U.S.-style street address.
+# If fields are missing, they will be skipped.
+# This can lead to ugly output in certain rare cases.
+def write_usa_address address
+	html = ""
+	
+	if address.street
+		html += '<span class="street-address">' + address.street + '</span><br />'
+	end
+
+	if address.locality
+		html += '<span class="locality">' + address.locality + '</span>, '
+	end
+
+	if address.region
+		html += '<span class="region">' + address.region + '</span> '
+	end
+
+	if address.postalcode
+		html += '<span class="postal-code">' + address.postalcode + '</span><br />'
+	end
+
+
+	if address.country
+		html += '<span class="country-name">' + address.country + '</span>'
+	end
+
+	# Remove unnecessary formatting characters.
+	# This only happens when some fields are missing.
+	html = html.gsub(' ,<br />', '<br />')
+	html = html.gsub('/<br />$/', '')
+
+	return html
+end
+
 # Returns a string of HTML with the contact's addresses.
 def write_address addresses
 	if addresses.empty?
@@ -150,11 +182,6 @@ def write_address addresses
 			html += address.street
 		elsif is_usa_address? address
 			# Assume the address is standard U.S. format.
-			html += '<span class="street-address">' + address.street + '</span><br />'
-			html += '<span class="locality">' + address.locality + '</span>, '
-			html += '<span class="region">' + address.region + '</span> '
-			html += '<span class="postal-code">' + address.postalcode + '</span><br />'
-			html += '<span class="country-name">' + address.country + '</span>'
 		else
 			# Assume the contents are entirely in the street field.
 			html += '<span>' + address.street + '</span>'
