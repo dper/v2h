@@ -3,22 +3,25 @@
 require "vcard"
 include Vcard
 
+# The input contact file.
 $filename = "contacts.vcf"
 
+# Returns a string of HTML with the contact's name.
 def write_name name
 	html = '<span class="fn">' + name.fullname + '</span>' + "\n"
 	return html
 end
 
+# Returns a string of HTML with the contact's phone numbers.
 def write_telephone telephones
-	if telephones.size == 0
+	if telephones.empty?
 		return ''
 	end
 	
 	html = '<div class="tel">' + "\n"
 
 	telephones.each do |tel|
-		location = tel.location[0]
+		location = tel.location.first
 		html += '<span class="' + location + '">' + tel + '</span>' + "\n"
 	end
 
@@ -26,8 +29,26 @@ def write_telephone telephones
 	return html
 end
 
+# Returns a string of HTML with the contact's email addresses.
+def write_email emails
+	if emails.empty?
+		return ''
+	end
+
+	html = '<div class="email">' + "\n"
+
+	emails.each do |email|
+		location = email.location.first
+		html += '<span class="' + location + '">' + email + '</span>' + "\n"
+	end
+
+	html += '</div>' + "\n"
+	return html
+end
+
+# Returns a string of HTML with the contact's URLs.
 def write_url urls
-	if urls.size == 0
+	if urls.empty?
 		return ''
 	end
 
@@ -42,12 +63,35 @@ def write_url urls
 	return html
 end
 
+# Returns a string of HTML with the contact's addresses.
+def write_address addresses
+	if addresses.empty?
+		return ''
+	end
+
+	html = '<div>' + "\n"
+
+	addresses.each do |address|
+		html += '<div class="adr">'
+
+		#TODO Handle addresses better.
+		html += address.street
+
+		html += '</div>' + "\n"
+	end
+
+	html += '</div>' + "\n"
+	return html
+end
+
 # Converts a single Vcard to HTML.
 def vcard_to_html card
 	html = '<div class="vcard">' + "\n"
 	html += write_name card.name
 	html += write_telephone card.telephones
+	html += write_email card.emails
 	html += write_url card.urls
+	html += write_address card.addresses
 
 
 
