@@ -89,12 +89,25 @@ def write_url urls
 	return html
 end
 
+# Returns a string of HTML with the contact's birthday.
+def write_birthday birthday
+	unless birthday
+		return ''
+	end
+
+	html = '<div class="bday">'
+	html += birthday.strftime("%B %-d, %Y")
+	html += '</div>' + "\n"
+	return html
+end
+
 # Returns true iff the address is formatted as lat/long coordinates.
 # Proper coordinates are decimal numbers separated by a comma.
-# Blank spaces are ignored.
 def is_gps_address? address
+	# Blank spaces are ignored.
 	address = address.gsub(' ', '')
 	address = address.gsub('　', '')
+
 	float_pattern = '(-)?[[:digit:]]+(\.)?+[[:digit:]]+'
 	gps_pattern = float_pattern + ',' + float_pattern
 	return (address.match gps_pattern) != nil
@@ -177,6 +190,7 @@ def vcard_to_html card
 	html += write_telephone card.telephones
 	html += write_email card.emails
 	html += write_url card.urls
+	html += write_birthday card.birthday
 	html += write_address card.addresses
 	html += write_category card.categories
 	html += '</div>' + "\n"
