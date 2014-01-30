@@ -123,11 +123,11 @@ def write_address addresses
 			html += address.street
 		else
 			# Assume the address is standard U.S. format.
-			html += '<span class="street-address">' + address.street + '</span>'
-			html += '<span class="locality">' + address.locality + '</span>'
-			html += '<span class="region">' + address.region + '</span>'
-			html += '<span class="postal-code">' + address.postal-code + '</span>'
-			html += '<span class="country-name">' + address.country-name + '</span>'
+			html += '<span class="street-address">' + address.street + '</span><br />'
+			html += '<span class="locality">' + address.locality + '</span>, '
+			html += '<span class="region">' + address.region + '</span> '
+			html += '<span class="postal-code">' + address.postalcode + '</span><br />'
+			html += '<span class="country-name">' + address.country + '</span>'
 		end
 
 		html += '</div>' + "\n"
