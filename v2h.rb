@@ -4,7 +4,8 @@ require "vcard"
 include Vcard
 
 # The input contact file.
-$filename = "contacts.vcf"
+$input = 'contacts.vcf'
+$output = 'contacts.html'
 
 # Returns a string of HTML with the contact's name.
 def write_name name
@@ -99,12 +100,8 @@ def vcard_to_html card
 	return html
 end
 
-# Converts a VCF file to HTML.
-# The file must consist of one or more Vcards.
-def vcf_to_html
-	s = File.read($filename)
-	cards = Vcard::Vcard.decode(s)
-
+# Takes a list of Vcards and makes HTML for them.
+def write_html text
 	html = '<html>' + "\n"
 	html += '<body>' + "\n"
 
@@ -114,9 +111,19 @@ def vcf_to_html
 
 	html += '</body>' + "\n"
 	html += '</html>' + "\n"
+	return html
+end
 
-	#TODO Write this to a file.
-	puts html
+# Converts a VCF file to HTML.
+# The file must consist of one or more Vcards.
+def vcf_to_html
+	s = File.read($input)
+	cards = Vcard::Vcard.decode(s)
+	html = write_html cards
+
+	open($output, 'w') do |file|
+		file.puts html
+	end
 end
 
 vcf_to_html
