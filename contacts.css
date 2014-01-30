@@ -40,6 +40,30 @@
 	padding-bottom: 5px;
 }
 
+.street-address {
+
+}
+
+.locality {
+
+}
+
+.region {
+
+}
+
+.postal-code {
+
+}
+
+.country-name {
+
+}
+
+.geo {
+	color: brown;
+}
+
 .categories {
 	text-align: right;
 }

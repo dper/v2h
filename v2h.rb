@@ -86,6 +86,17 @@ def write_url urls
 	return html
 end
 
+# Returns true iff the address is formatted as lat/long coordinates.
+# Proper coordinates are decimal numbers separated by a comma.
+# Blank spaces are ignored.
+def is_gps_address? address
+	address = address.gsub(' ', '')
+	address = address.gsub('　', '')
+	float_pattern = '[[:digit:]]+(\.)?+[[:digit:]]+'
+	gps_pattern = float_pattern + ',' + float_pattern
+	return (address.match gps_pattern) != nil
+end
+
 # Returns a string of HTML with the contact's addresses.
 def write_address addresses
 	if addresses.empty?
@@ -97,7 +108,9 @@ def write_address addresses
 	addresses.each do |address|
 		html += '<div class="adr">'
 
-		if address.street.start_with? '日本'
+		if is_gps_address? address.street
+			html += '<span class="geo">' + address.street + '</geo>'
+		elsif address.street.start_with? '日本'
 			# The address is Japanese and entirely in the street field.
 			html += address.street
 
@@ -110,7 +123,11 @@ def write_address addresses
 			html += address.street
 		else
 			# Assume the address is standard U.S. format.
-			html += address.street
+			html += '<span class="street-address">' + address.street + '</span>'
+			html += '<span class="locality">' + address.locality + '</span>'
+			html += '<span class="region">' + address.region + '</span>'
+			html += '<span class="postal-code">' + address.postal-code + '</span>'
+			html += '<span class="country-name">' + address.country-name + '</span>'
 		end
 
 		html += '</div>' + "\n"
