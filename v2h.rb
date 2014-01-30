@@ -87,6 +87,20 @@ def write_address addresses
 	return html
 end
 
+# Returns a string of HTML with the contact's categories.
+def write_category categories
+	if categories.empty?
+		return ''
+	end
+
+	html = '<div class="categories">' + "\n"
+
+	#TODO Write this.
+
+	html += '</div>' + "\n"
+	return html
+end
+
 # Converts a single Vcard to HTML.
 def vcard_to_html card
 	html = '<div class="vcard">' + "\n"
@@ -95,6 +109,7 @@ def vcard_to_html card
 	html += write_email card.emails
 	html += write_url card.urls
 	html += write_address card.addresses
+	html += write_category card.categories
 
 
 
