@@ -92,9 +92,20 @@ end
 def is_gps_address? address
 	address = address.gsub(' ', '')
 	address = address.gsub('　', '')
-	float_pattern = '[[:digit:]]+(\.)?+[[:digit:]]+'
+	float_pattern = '(-)?[[:digit:]]+(\.)?+[[:digit:]]+'
 	gps_pattern = float_pattern + ',' + float_pattern
 	return (address.match gps_pattern) != nil
+end
+
+# Returns true iff the address is a U.S.-style street address.
+# The country need not be a U.S. country if the formatting is the same.
+def is_usa_address? address
+	if address.country.empty? then return false end
+	if address.postalcode.empty? then return false end
+	if address.region.empty? then return false end
+	if address.locality.empty? then return false end
+	if address.street.empty? then return false end
+	return true
 end
 
 # Returns a string of HTML with the contact's addresses.
@@ -121,13 +132,16 @@ def write_address addresses
 			html += address.region
 			html += address.locality
 			html += address.street
-		else
+		elsif is_usa_address? address
 			# Assume the address is standard U.S. format.
 			html += '<span class="street-address">' + address.street + '</span><br />'
 			html += '<span class="locality">' + address.locality + '</span>, '
 			html += '<span class="region">' + address.region + '</span> '
 			html += '<span class="postal-code">' + address.postalcode + '</span><br />'
 			html += '<span class="country-name">' + address.country + '</span>'
+		else
+			# Assume the contents are entirely in the street field.
+			html += '<span>' + address.street + '</span>'
 		end
 
 		html += '</div>' + "\n"
