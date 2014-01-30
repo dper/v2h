@@ -5,17 +5,32 @@ include Vcard
 
 $filename = "contacts.vcf"
 
+def write_name name
+	html = '<span class="fn">' + name.fullname + '</span>' + "\n"
+	return html
+end
+
+def write_telephone telephones
+	if telephones.size == 0
+		return ''
+	end
+	
+	html = '<div class="tel">' + "\n"
+
+	card.telephones.each do |tel|
+		html += '<div class="tel">' + tel + '</div>' + "\n"
+	end
+
+	html += '</div>' + "\n"
+	return html
+end
+
 # Converts a single Vcard to HTML.
 def vcard_to_html card
 	html = '<div class="vcard">' + "\n"
+	html += write_name card.name
+	html += write_telephone card.telephones
 
-	html += '<span class="fn">' + card.name.fullname + '</span>' + "\n"
-
-	if card.telephones.size > 0
-		card.telephones.each do |tel|
-			html += '<div class="tel">' + tel + '</div>' + "\n"
-		end
-	end
 
 	if card.emails.size > 0
 		card.emails.each do |email|
