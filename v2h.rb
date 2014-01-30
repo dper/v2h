@@ -101,7 +101,7 @@ def vcard_to_html card
 end
 
 # Takes a list of Vcards and makes HTML for them.
-def write_html text
+def write_html cards
 	html = '<html>' + "\n"
 	html += '<body>' + "\n"
 
