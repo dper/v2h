@@ -25,7 +25,11 @@ def write_telephone telephones
 
 	telephones.each do |tel|
 		location = tel.location.first
-		html += '<span class="' + location + '">' + tel + '</span>' + "\n"
+		if location
+			html += '<span class="' + location + '">' + tel + '</span>' + "\n"
+		else
+			html += '<span>' + tel + '</span>' + "\n"
+		end
 	end
 
 	html += '</div>' + "\n"
@@ -42,7 +46,11 @@ def write_email emails
 
 	emails.each do |email|
 		location = email.location.first
-		html += '<span class="' + location + '">' + email + '</span>' + "\n"
+		if location
+			html += '<span class="' + location + '">' + email + '</span>' + "\n"
+		else
+			html += '<span>' + email + '</span>' + "\n"
+		end
 	end
 
 	html += '</div>' + "\n"
