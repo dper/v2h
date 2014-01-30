@@ -103,7 +103,9 @@ def write_category categories
 
 	html = '<div class="categories">' + "\n"
 
-	#TODO Write this.
+	categories.each do |category|
+		html += '<span class="category">' + category + '</span>' + "\n"
+	end
 
 	html += '</div>' + "\n"
 	return html
@@ -118,9 +120,6 @@ def vcard_to_html card
 	html += write_url card.urls
 	html += write_address card.addresses
 	html += write_category card.categories
-
-
-
 	html += '</div>' + "\n"
 	return html
 end

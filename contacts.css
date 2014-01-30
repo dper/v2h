@@ -41,7 +41,12 @@
 }
 
 .categories {
+	text-align: right;
+}
 
+.category {
+	text-transform: uppercase;
+	color: #555555;
 }
 
 .work {
