@@ -159,6 +159,35 @@ def write_multiline_address address
 	return html
 end
 
+# Returns a string of HTML for a lat/long address.
+def write_gps_address coordinates
+	html = '<div class="adr geo">'
+	html += coordinates
+	html += '</div>' + "\n"
+	return html
+end
+
+# Returns a string of HTML for a Japanese unformatted address.
+# Sometimes Japanese addresses are just one long string.
+def write_japanese_unformatted_address address
+	html = '<div class="adr">'
+	html += address
+	html += '</div>' + "\n"
+	return html
+end
+
+# Returns a string of HTML for a Japanese address.
+def write_japanese_address address
+	html = '<div class="adr">'
+	html += address.country + '　'
+	html += address.postalcode + ' '
+	html += address.region
+	html += address.locality
+	html += address.street
+	html += '</div>' + "\n"
+	return html
+end
+
 # Returns a string of HTML with the contact's addresses.
 def write_address addresses
 	if addresses.empty?
@@ -171,19 +200,12 @@ def write_address addresses
 		html += '<div class="adr">'
 
 		if is_gps_address? address.street
-			html += '<span class="geo">' + address.street + '</span>'
+			html += write_gps_address address.street
 		elsif address.street.start_with? '日本'
-			# The address is Japanese and entirely in the street field.
-			html += address.street
+			html += write_japanese_unformatted_address address.street
 		elsif address.country == '日本'
-			# The address is Japanese and uses multiple fields.
-			html += address.country + '　'
-			html += address.postalcode + ' '
-			html += address.region
-			html += address.locality
-			html += address.street
+			html += write_japanese_address address
 		elsif is_multiline_address? address
-			# The address is standard U.S. format.
 			html += write_multiline_address address
 		else
 			# Assume the contents are entirely in the street field.
