@@ -75,11 +75,11 @@ def write_url urls
 		return ''
 	end
 
-	html = '<div class="url">' + "\n"
+	html = '<div class="urls">' + "\n"
 
 	urls.each do |url|
 		link = url.uri
-		html += '<span><a href="' + link + '">' + link + '</a></span>' + "\n"
+		html += '<span><a class="url" href="' + link + '">' + link + '</a></span>' + "\n"
 	end
 
 	html += '</div>' + "\n"
