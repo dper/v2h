@@ -112,19 +112,23 @@ end
 
 # Returns true iff the address is a U.S.-style street address.
 # The country need not be a U.S. country if the formatting is the same.
-def is_usa_address? address
-	if address.country.empty? then return false end
-	if address.postalcode.empty? then return false end
-	if address.region.empty? then return false end
-	if address.locality.empty? then return false end
-	if address.street.empty? then return false end
-	return true
+def is_multiline_address? address
+	count = 0
+
+	unless address.country.empty? then count += 1 end
+	unless address.postalcode.empty? then count += 1 end
+	unless address.region.empty? then count += 1 end
+	unless address.locality.empty? then count += 1 end
+	unless address.street.empty? then count += 1 end
+
+	return count > 1
 end
 
-# Returns a string of HTML for a U.S.-style street address.
+# Returns a string of HTML for a multiline street address.
+# Address formatting is U.S. standard.
 # If fields are missing, they will be skipped.
-# This can lead to ugly output in certain rare cases.
-def write_usa_address address
+# This can lead to ugly output in certain uncommon cases.
+def write_multiline_address address
 	html = ""
 	
 	if address.street
@@ -142,7 +146,6 @@ def write_usa_address address
 	if address.postalcode
 		html += '<span class="postal-code">' + address.postalcode + '</span><br />'
 	end
-
 
 	if address.country
 		html += '<span class="country-name">' + address.country + '</span>'
@@ -172,7 +175,6 @@ def write_address addresses
 		elsif address.street.start_with? '日本'
 			# The address is Japanese and entirely in the street field.
 			html += address.street
-
 		elsif address.country == '日本'
 			# The address is Japanese and uses multiple fields.
 			html += address.country + '　'
@@ -180,8 +182,9 @@ def write_address addresses
 			html += address.region
 			html += address.locality
 			html += address.street
-		elsif is_usa_address? address
-			# Assume the address is standard U.S. format.
+		elsif is_multiline_address? address
+			# The address is standard U.S. format.
+			html += write_multiline_address address
 		else
 			# Assume the contents are entirely in the street field.
 			html += '<span>' + address.street + '</span>'
