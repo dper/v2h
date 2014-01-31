@@ -196,7 +196,7 @@ end
 
 # Returns a string of HTML with the contact's categories.
 def write_category categories
-	if categories.empty?
+	unless categories
 		return ''
 	end
 
