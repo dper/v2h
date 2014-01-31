@@ -24,9 +24,13 @@
 	padding-right: 10px;
 }
 
-.email {
+.emails {
 	padding-left: 50px;
 	font-family: Courier, "Courier New", monospace;
+}
+
+.email {
+	padding-right: 10px;
 }
 
 .url {

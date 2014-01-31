@@ -54,14 +54,14 @@ def write_email emails
 		return ''
 	end
 
-	html = '<div class="email">' + "\n"
+	html = '<div class="emails">' + "\n"
 
 	emails.each do |email|
 		location = email.location.first
 		if location
-			html += '<span class="' + location + '">' + email + '</span>' + "\n"
+			html += '<span class="email ' + location + '">' + email + '</span>' + "\n"
 		else
-			html += '<span>' + email + '</span>' + "\n"
+			html += '<span class="email">' + email + '</span>' + "\n"
 		end
 	end
 
