@@ -235,13 +235,13 @@ end
 # Converts a single Vcard to HTML.
 def vcard_to_html card
 	html = '<div class="vcard">' + "\n"
+	html += write_category card.categories
 	html += write_name card.name
 	html += write_telephone card.telephones
 	html += write_email card.emails
 	html += write_url card.urls
 	html += write_birthday card.birthday
 	html += write_address card.addresses
-	html += write_category card.categories
 	html += '</div>' + "\n"
 	return html
 end

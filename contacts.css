@@ -85,7 +85,7 @@
 }
 
 .categories {
-	text-align: right;
+	float: right;
 }
 
 .category {
