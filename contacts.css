@@ -51,6 +51,12 @@
 }
 
 .adr {
+
+}
+
+.multilineaddress {
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .street-address {

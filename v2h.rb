@@ -129,7 +129,7 @@ end
 # If fields are missing, they will be skipped.
 # This can lead to ugly output in certain uncommon cases.
 def write_multiline_address address
-	html = ""
+	html = '<div class="adr multilineaddress">'
 	
 	if address.street
 		html += '<span class="street-address">' + address.street + '</span><br />'
@@ -156,6 +156,7 @@ def write_multiline_address address
 	html = html.gsub(' ,<br />', '<br />')
 	html = html.gsub('/<br />$/', '')
 
+	html += '</div>' + "\n"
 	return html
 end
 
@@ -197,8 +198,6 @@ def write_address addresses
 	html = '<div class="addresses">' + "\n"
 
 	addresses.each do |address|
-		html += '<div class="adr">'
-
 		if is_gps_address? address.street
 			html += write_gps_address address.street
 		elsif address.street.start_with? '日本'
@@ -209,10 +208,8 @@ def write_address addresses
 			html += write_multiline_address address
 		else
 			# Assume the contents are entirely in the street field.
-			html += '<span>' + address.street + '</span>'
+			html += '<div class="adr">' + address.street + '</div>' + "\n"
 		end
-
-		html += '</div>' + "\n"
 	end
 
 	html += '</div>' + "\n"
