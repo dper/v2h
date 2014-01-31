@@ -33,14 +33,14 @@ def write_telephone telephones
 		return ''
 	end
 	
-	html = '<div class="tel">' + "\n"
+	html = '<div class="telephones">' + "\n"
 
 	telephones.each do |tel|
 		location = tel.location.first
 		if location
-			html += '<span class="' + location + '">' + tel + '</span>' + "\n"
+			html += '<span class="tel ' + location + '">' + tel + '</span>' + "\n"
 		else
-			html += '<span>' + tel + '</span>' + "\n"
+			html += '<span class="tel">' + tel + '</span>' + "\n"
 		end
 	end
 
