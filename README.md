@@ -1,7 +1,13 @@
 v2h
 ===
 
-A Vcard to hCard conversion script.
+A Vcard to HTML conversion script.  The output is in something approximating hCard format.
+
+
+Motivation
+==========
+
+I keep track of my contacts using OwnCloud, and I used to use GMail.  For both of these, the web interface is great for editing and viewing contacts, but sometimes you want a static file.  A static address book file is useful because you can access it without a net connection and it loads *very* quickly.  Both OwnCloud and GMail can be slow at times, particularly if you have hundreds of contacts in your address book.  This script takes a `vcf` file and produces an `html` file.  The resulting `html` file is styled by a CSS style sheet which you can modify to your own needs.
 
 
 Dependencies
