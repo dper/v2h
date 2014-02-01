@@ -36,3 +36,9 @@ References
 * <https://en.wikipedia.org/wiki/HCard>
 * <http://www.microformats.org/wiki/hcard>
 * <http://rubydoc.info/gems/vcard/0.2.12/frames>
+
+
+License
+=======
+
+This project is under the MIT License.  Have fun with it!
