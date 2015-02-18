@@ -13,11 +13,9 @@ I keep track of my contacts using OwnCloud, and I used to use GMail.  For both o
 Dependencies
 ============
 
-This script depends on the `vcard` gem.  This is easy to install.
+This script depends on the [vcard](https://rubygems.org/gems/vcard) gem.  This is easy to install.
 
     gem install vcard
-
-See <https://rubygems.org/gems/vcard> for more.
 
 
 Use
@@ -42,3 +40,21 @@ License
 =======
 
 This project is under the MIT License.  Have fun with it!
+
+
+Source
+======
+
+* Browse: <https://dperkins.org/git/gitlist/v2h.git/>.
+* Clone: <https://dperkins.org/git/public/v2h.git/>.
+* GitHub: <https://github.com/dper/v2h/>.
+
+
+Contact
+=======
+
+If you want to contact the author, here are some ways.  Bug reports and improvements are always welcome.
+
+* <https://microca.st/dper>
+* <https://twitter.com/dpp0>
+* <https://dperkins.org/tag/contact.html>
